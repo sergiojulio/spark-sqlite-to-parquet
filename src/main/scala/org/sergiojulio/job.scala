@@ -1,11 +1,20 @@
 package org.sergiojulio
 import org.apache.spark.sql.SparkSession
+import org.apache.log4j.{Level, Logger}
 
 object job {
 
   def main(args: Array[String]): Unit = {
 
+    //Logger.getLogger("org").setLevel(Level.ERROR)
+
     print("\n\n>>>>> START OF PROGRAM <<<<<\n\n")
+
+    if (args.length > 0) {
+
+      print("\n\n>>>>>" + args(0) + "<<<<<\n\n")
+
+    }
 
     val spark = SparkSession.builder().master("local[4]").appName("sqlite-to-parquet").getOrCreate()
     /*
@@ -14,6 +23,8 @@ object job {
     df.printSchema()
     df.show()
     */
+
+
 
 
     // for tables
@@ -35,12 +46,13 @@ object job {
       val str1 = "SELECT * FROM "
       val str2 = t.toString
 
+      /*
       val tableData = spark.read.format("jdbc").options(
         Map("url" -> "jdbc:sqlite:/home/sergio/Downloads/Datasets/spotify.sqlite",
             "query" -> str1.concat(str2))).load()
 
       tableData.coalesce(1).write.format("parquet").mode("append").save("/home/sergio/Downloads/Datasets/parquets/" + t + ".parquet")
-
+      */
       //tableData.show()
     }
 
