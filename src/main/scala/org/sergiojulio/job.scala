@@ -13,9 +13,7 @@ object job {
     // args(1) path parquets
 
     if (args.length > 0) {
-
       print("\n\n>>>>>" + args(0) + "<<<<<\n\n")
-
     }
 
     val spark = SparkSession.builder().master("local[8]").appName("sqlite-to-parquet").getOrCreate()
@@ -52,7 +50,6 @@ object job {
 
     // end for tables
     print("\n\n>>>>> END OF PROGRAM <<<<<\n\n")
-
     spark.close()
   }
 }
