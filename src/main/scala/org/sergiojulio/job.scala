@@ -25,6 +25,7 @@ object job {
     */
     // for tables
     // can you read my mind?
+    // Ok its over now we start a brand new way to do the things
     val df2 = spark.read.format("jdbc").options(
       Map("url" -> "jdbc:sqlite:/home/sergio/dev/spark/spark-sqlite-to-parquet/tmp/chinook.db",
         "query" -> "SELECT name FROM sqlite_schema WHERE type = 'table' AND name NOT LIKE 'sqlite_%'")).load()
